@@ -257,6 +257,10 @@ class Cli {
         // TODO: push the motorbike to the vehicles array
         // TODO: set the selectedVehicleVin to the vin of the motorbike
         // TODO: perform actions on the motorbike
+       
+        // Create Wheel instances from the input values
+        const frontWheel = new Wheel(parseInt(answers.frontWheelDiameter), answers.frontWheelBrand);
+        const rearWheel = new Wheel(parseInt(answers.rearWheelDiameter), answers.rearWheelBrand);
         const motorbike = new Motorbike(
           Cli.generateVin(),
           answers.color,
@@ -265,8 +269,7 @@ class Cli {
           parseInt(answers.year),
           parseInt(answers.weight),
           parseInt(answers.topSpeed),
-          new Wheel(answers.frontWheelDiameter, answers.frontWheelBrand),
-          new Wheel(answers.rearWheelDiameter, answers.rearWheelBrand)
+          [frontWheel, rearWheel]
         );
         this.vehicles.push(motorbike);
         this.selectedVehicleVin = motorbike.vin;
@@ -298,13 +301,18 @@ class Cli {
         const selectedVehicle = answers.vehicleToTow;
         if (selectedVehicle instanceof Truck) {
           console.log('A truck cannot tow itself.');
-        } else if (selectedVehicle instanceof Motorbike || selectedVehicle instanceof Car) {
-          const towingTruck = this.vehicles.find(
-            (vehicle) => vehicle.vin === this.selectedVehicleVin && vehicle instanceof Truck
+        } else if (answers.action === 'Tow a vehicle') {
+          // Check if the selected vehicle is a Truck
+          const selectedVehicle = this.vehicles.find(
+            (vehicle) => vehicle.vin === this.selectedVehicleVin
           );
-          if (towingTruck) {
-            // Call the tow method here
-            towingTruck.tow(selectedVehicle);
+        
+          if (selectedVehicle instanceof Truck) {
+            // Call findVehicleToTow and pass the selected truck as an argument
+            this.findVehicleToTow();
+            return; // Return to avoid calling performActions immediately
+          } else {
+            console.log('You can only tow with a Truck.');
           }
         }
         this.performActions();
