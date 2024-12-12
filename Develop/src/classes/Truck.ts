@@ -34,16 +34,9 @@ class Truck extends Vehicle implements AbleToTow {
       topSpeed: number,
       wheels: Wheel[] = [],
       towingCapacity: number
-    ) {
-      this.vin = vin;
-      this.color = color;
-      this.make = make;
-      this.model = model;
-      this.year = year;
-      this.weight = weight;
-      this.topspeed = topspeed;
-    } {
-      super(vin, color, make, model, year, weight, topSpeed); // Call the parent Vehicle class constructor
+     ) {
+      
+      super(); // Call the parent Vehicle class constructor
       this.towingCapacity = towingCapacity;
       // Check if the wheels array has 4 elements, if not create 4 default Wheel objects
       if (wheels.length !== 4) {
@@ -70,8 +63,7 @@ class Truck extends Vehicle implements AbleToTow {
     } else {
       console.log(`${vehicleMakeModel} is too heavy to be towed by ${this.make} ${this.model}`);
     }
-  }
-  }
+   }
 
   // TODO: Override the printDetails method from the Vehicle class
     // TODO: The method should call the printDetails method of the parent class
