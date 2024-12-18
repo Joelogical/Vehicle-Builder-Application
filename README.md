@@ -9,7 +9,7 @@ The **Vehicle Generator Program** is a tool that allows users to select from lis
 - Customizable lists of vehicle attributes for different use.
 
 ## User guide - Video
-https://drive.google.com/file/d/15Fmo-ClhDlIuxsOglnweAZkNETDXhnaR/view?usp=drive_link
+https://drive.google.com/file/d/15Fmo-ClhDlIuxsOglnweAZkNETDXhnaR/view?usp=sharing
 
 ## GitHub Repository
 https://github.com/Joelogical/Vehicle-Builder-Application.git
